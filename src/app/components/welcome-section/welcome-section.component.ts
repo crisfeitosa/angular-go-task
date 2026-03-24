@@ -17,6 +17,9 @@ export class WelcomeSectionComponent {
 
     dialogRef.closed.subscribe((taskForm) => {
       console.log('Tarefa criada', taskForm);
+      if (taskForm) {
+        this._taskService.addTask(taskForm);
+      }
     });
   }
 }
