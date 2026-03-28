@@ -1,6 +1,9 @@
-import { DIALOG_DATA } from '@angular/cdk/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { generateUniqueIdWithTimestamp } from '../../utils/generate-unique-id-with-timestamp';
+import { IComment } from '../../interfaces/comment.interface';
+import { ITask } from '../../interfaces/task.interface';
 
 @Component({
   selector: 'app-task-comments-modal',
@@ -9,11 +12,34 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './task-comments-modal.component.css',
 })
 export class TaskCommentsModalComponent {
+  taskCommentsChanged = false;
   commentControl = new FormControl('', [Validators.required]);
 
-  readonly _task = inject(DIALOG_DATA);
+  readonly _task: ITask = inject(DIALOG_DATA);
+  readonly _dialogRef: DialogRef<boolean> = inject(DialogRef);
 
   onAddComment() {
     console.log('Adicionar comentário:', this.commentControl.value);
+
+    // criar um novo comentário
+    const newComment: IComment = {
+      id: generateUniqueIdWithTimestamp(),
+      description: this.commentControl.value
+        ? this.commentControl.value.trim()
+        : '',
+    };
+
+    // adicionar o novo comentário à lista de comentários da tarefa
+    this._task.comments.unshift(newComment);
+
+    // limpar o campo de comentário
+    this.commentControl.reset();
+
+    // atualizar a flag/prop se houve alteração nos comentários
+    this.taskCommentsChanged = true;
+  }
+
+  onCloseModal() {
+    this._dialogRef.close(this.taskCommentsChanged);
   }
 }
