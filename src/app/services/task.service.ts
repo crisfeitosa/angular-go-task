@@ -1,4 +1,4 @@
-import { BehaviorSubject, map } from 'rxjs';
+import { BehaviorSubject, map, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { ITask } from '../interfaces/task.interface';
 import { ITaskFormControls } from '../interfaces/task.form-controls.interface';
@@ -13,21 +13,24 @@ import { IComment } from '../interfaces/comment.interface';
 export class TaskService {
   // Tarefas em A fazer
   private todoTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly todoTasks = this.todoTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  readonly todoTasks = this.todoTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTaskOnLocalStorage(TaskStatusEnum.TODO, tasks)),
+  );
 
   // Tarefas em Fazendo
   private doingTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly doingTasks = this.doingTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  readonly doingTasks = this.doingTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTaskOnLocalStorage(TaskStatusEnum.DOING, tasks)),
+  );
 
   // Tarefas em Concluído
   private doneTasks$ = new BehaviorSubject<ITask[]>([]);
-  readonly doneTasks = this.doneTasks$
-    .asObservable()
-    .pipe(map((tasks) => structuredClone(tasks)));
+  readonly doneTasks = this.doneTasks$.asObservable().pipe(
+    map((tasks) => structuredClone(tasks)),
+    tap((tasks) => this.saveTaskOnLocalStorage(TaskStatusEnum.DONE, tasks)),
+  );
 
   addTask(taskInfos: ITaskFormControls) {
     const newTask: ITask = {
@@ -120,6 +123,14 @@ export class TaskService {
       (task) => task.id !== taskId,
     );
     currentTaskList.next(newTaskList);
+  }
+
+  private saveTaskOnLocalStorage(key: string, tasks: ITask[]) {
+    try {
+      localStorage.setItem(key, JSON.stringify(tasks));
+    } catch (error) {
+      console.log('Error saving tasks to localStorage:', error);
+    }
   }
 
   private getTaskListByStatus(taskStatus: TaskStatus) {
