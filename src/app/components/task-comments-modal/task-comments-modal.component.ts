@@ -44,7 +44,7 @@ export class TaskCommentsModalComponent {
     this.commentInputRef.nativeElement.focus();
   }
 
-  onRemoveModal(commentId: String) {
+  onRemoveComment(commentId: String) {
     this._task.comments = this._task.comments.filter(
       (comment) => comment.id !== commentId,
     );
