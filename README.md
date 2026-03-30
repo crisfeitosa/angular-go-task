@@ -1,12 +1,12 @@
 # ✅ GoTask
 
 <p align="center">
-  Aplicação de gerenciamento de tarefas estilo Kanban, desenvolvida com <strong>Angular 19</strong> como parte da trilha Angular da <a href="https://www.rocketseat.com.br/">Rocketseat</a>.
+  Aplicação de gerenciamento de tarefas estilo Kanban, desenvolvida com <strong>Angular 20</strong> como parte da trilha Angular da <a href="https://www.rocketseat.com.br/">Rocketseat</a>.
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Angular-19-DD0031?logo=angular&logoColor=white" alt="Angular 19" />
-  <img src="https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Angular-20-DD0031?logo=angular&logoColor=white" alt="Angular 20" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/RxJS-7.8-B7178C?logo=reactivex&logoColor=white" alt="RxJS" />
 </p>
@@ -32,11 +32,11 @@ O **GoTask** é um quadro Kanban interativo que organiza tarefas em três coluna
 
 | Tecnologia                                                                       | Versão    | Uso                                         |
 | -------------------------------------------------------------------------------- | --------- | ------------------------------------------- |
-| [Angular](https://angular.dev/)                                                  | 19.2      | Framework principal (standalone components) |
-| [Angular CDK](https://material.angular.io/cdk/)                                  | 19.2      | Drag & Drop e Dialog                        |
+| [Angular](https://angular.dev/)                                                  | 20.0      | Framework principal (standalone components) |
+| [Angular CDK](https://material.angular.io/cdk/)                                  | 20.0      | Drag & Drop e Dialog                        |
 | [RxJS](https://rxjs.dev/)                                                        | 7.8       | Estado reativo com `BehaviorSubject`        |
 | [Tailwind CSS](https://tailwindcss.com/)                                         | 4.1       | Estilização utilitária                      |
-| [TypeScript](https://www.typescriptlang.org/)                                    | 5.7       | Tipagem estática                            |
+| [TypeScript](https://www.typescriptlang.org/)                                    | 5.8       | Tipagem estática                            |
 | [Jasmine](https://jasmine.github.io/) + [Karma](https://karma-runner.github.io/) | 5.6 / 6.4 | Testes unitários                            |
 
 ## 🏗️ Arquitetura
