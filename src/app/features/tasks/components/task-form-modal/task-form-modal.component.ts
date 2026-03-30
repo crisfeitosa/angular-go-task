@@ -6,8 +6,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ITaskFormModalData } from '../../interfaces/task-form-modal-data.interface';
-import { ITaskFormControls } from '../../interfaces/task.form-controls.interface';
+import { ITaskFormControls } from '../../../../core/interfaces/task-form-controls.interface';
+import { ITaskFormModalData } from '../../../../core/interfaces/task-form-modal-data.interface';
 
 @Component({
   selector: 'app-task-form-modal',

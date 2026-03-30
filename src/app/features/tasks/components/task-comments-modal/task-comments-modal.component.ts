@@ -1,15 +1,15 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
-import { generateUniqueIdWithTimestamp } from '../../utils/generate-unique-id-with-timestamp';
-import { IComment } from '../../interfaces/comment.interface';
-import { ITask } from '../../interfaces/task.interface';
+import { ITask } from '../../../../domain/tasks/interfaces/task.interface';
+import { IComment } from '../../../../domain/tasks/interfaces/comment.interface';
+import { generateUniqueIdWithTimestamp } from '../../../../shared/utils/generate-unique-id-with-timestamp';
 
 @Component({
   selector: 'app-task-comments-modal',
   imports: [ReactiveFormsModule],
   templateUrl: './task-comments-modal.component.html',
-  styleUrl: './task-comments-modal.component.css',
+  styleUrls: ['./task-comments-modal.component.css'],
 })
 export class TaskCommentsModalComponent {
   taskCommentsChanged = false;
@@ -44,7 +44,7 @@ export class TaskCommentsModalComponent {
     this.commentInputRef.nativeElement.focus();
   }
 
-  onRemoveComment(commentId: String) {
+  onRemoveComment(commentId: string) {
     this._task.comments = this._task.comments.filter(
       (comment) => comment.id !== commentId,
     );
